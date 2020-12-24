@@ -1,0 +1,56 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+:imagesdir: images
+
+= NeuroSim IDE
+
+== Ecore editor
+
+NeuroSim IDE provides a integrated web-based editor for Ecore Models (including Diagrams). It contains two components: one link:https://github.com/eclipsesource/glsp[GLSP] language server (Server-side, written in Java), and one GLSP client extension to actually present the diagrams (Using link:https://github.com/eclipse/sprotty-theia[Sprotty]).
+
+NeuroSim IDE can display an existing Ecore model. The diagram layout will be persisted in an `.enotation` file next to the `.ecore` file. The diagram editor also supports creation of new elements (`EClasses`, `EAttributes`, `EReferences`...), as well as partial support for editing existing elements (Renaming, deleting...).
+
+## Building IDE
+
+NOTE: to build and run the NeuroSim IDE, you need Java version >= 11.
+
+### Building
+
+```
+./mvnw install
+```
+
+When building the IDE for the first time this could take a while.
+
+### Running
+
+```
+./mvnw -pl client frontend:yarn@start-IDE
+```
+  
+NOTE: The backend language server is automatically launched
+
+
+## Building and deploying via Docker
+The client repo contains a `Dockerfile`, that builds the entire client application. The image listens on 0.0.0.0:3000 for incoming requests from a browser.
+
+For installing docker locally please consult link:https://docs.docker.com/install/[docker's installation description] for your OS.
+
+WARNING: The server needs to be build locally before you build the image
+
+**Building**
+```
+docker build -t <imagename>:<tagname> .
+```
+
+**Running**
+```
+docker run -it -p 3000:3000 --rm <imagename>:<tagname>
+```
+
+After that you should be able to connect with your browser at `localhost:3000`.

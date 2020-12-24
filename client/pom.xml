@@ -49,6 +49,18 @@
                         </configuration>
                         <phase>compile</phase>
                     </execution>
+                    <!-- Temprary disabled until https://github.com/eclipse-emfcloud/ecore-glsp/issues/78 has been fixed
+                    <execution>
+                        <id>test-IDE</id>
+                        <goals>
+                            <goal>yarn</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>e2etest</arguments>
+                        </configuration>
+                        <phase>test</phase>
+                    </execution>
+                    -->
                     <execution>
                         <id>start-IDE</id>
                         <goals>
