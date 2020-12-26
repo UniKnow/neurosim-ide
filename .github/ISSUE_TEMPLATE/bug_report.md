@@ -24,9 +24,9 @@ Provide error messages and exceptions you may got in the eclipse plugin (see err
 **Input files to reproduce**
 If possible, provide input files which allow reproducing the problem (CML or SCL files).
 
-**IDE and Plugin (please complete the following information):**
- - Eclipse version
- - ContextMapper plugin version
+**Environment (please complete the following information):**
+ - IDE type/version: ... 
+ - OS: ...
 
 **Additional context**
 Add any other context about the problem here.
