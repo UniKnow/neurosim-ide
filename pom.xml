@@ -8,8 +8,25 @@
     <packaging>pom</packaging>
     <version>1.0</version>
 
+    <properties>
+        <docker.plugin.version>0.34.1</docker.plugin.version>
+    </properties>
+
     <modules>
         <module>client</module>
         <module>server</module>
     </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.maven.plugin.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 </project>

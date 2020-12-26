@@ -22,7 +22,7 @@ NOTE: to build and run the NeuroSim IDE, you need Java version >= 11.
 ### Building
 
 ```
-./mvnw install
+./mvnw package
 ```
 
 When building the IDE for the first time this could take a while.
@@ -39,18 +39,17 @@ NOTE: The backend language server is automatically launched
 ## Building and deploying via Docker
 The client repo contains a `Dockerfile`, that builds the entire client application. The image listens on 0.0.0.0:3000 for incoming requests from a browser.
 
+To build a docker image locally execute the following statement:
+
+```
+./mvnw install
+```
+
 For installing docker locally please consult link:https://docs.docker.com/install/[docker's installation description] for your OS.
-
-WARNING: The server needs to be build locally before you build the image
-
-**Building**
-```
-docker build -t <imagename>:<tagname> .
-```
 
 **Running**
 ```
-docker run -it -p 3000:3000 --rm <imagename>:<tagname>
+docker run -it -p 3000:3000 --rm neurosim-ide:latest
 ```
 
 After that you should be able to connect with your browser at `localhost:3000`.

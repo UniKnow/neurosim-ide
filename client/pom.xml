@@ -8,6 +8,11 @@
     <packaging>pom</packaging>
     <version>1.0</version>
 
+    <properties>
+        <docker.plugin.version>0.34.1</docker.plugin.version>
+        <frontend.plugin.version>1.11.0</frontend.plugin.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.eclipse.emfcloud.ecore</groupId>
@@ -21,9 +26,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <!-- Use the latest released version:
-                https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                <version>1.11.0</version>
+                <version>${frontend.plugin.version}</version>
                 <configuration>
                     <installDirectory>target</installDirectory>
                 </configuration>
@@ -58,7 +61,7 @@
                         <configuration>
                             <arguments>e2etest</arguments>
                         </configuration>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                     </execution>
                     -->
                     <execution>
@@ -72,6 +75,42 @@
                         </configuration>
                         <phase>none</phase>
                     </execution>
+
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <verbose>true</verbose>
+                    <images>
+                        <image>
+                            <name>uniknow/neurosim-ide:%v</name>
+                            <alias>ide</alias>
+                            <build>
+                                <contextDir>${project.basedir}</contextDir>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>docker-clean</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>remove</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker-build</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+
                 </executions>
             </plugin>
 
