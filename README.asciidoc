@@ -49,7 +49,7 @@ For installing docker locally please consult link:https://docs.docker.com/instal
 
 **Running**
 ```
-docker run -it -p 3000:3000 --rm neurosim-ide:latest
+docker run -it -p 3000:3000 --rm uniknow/neurosim-ide:1.0
 ```
 
 After that you should be able to connect with your browser at `localhost:3000`.
